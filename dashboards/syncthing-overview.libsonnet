@@ -1,5 +1,5 @@
+local mixinUtils = import 'github.com/adinhodovic/mixin-utils/utils.libsonnet';
 local g = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-local mixinUtils = import 'mixin-utils/utils.libsonnet';
 local util = import 'util.libsonnet';
 
 local dashboard = g.dashboard;
