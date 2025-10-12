@@ -3,74 +3,37 @@ rule_files:
   - ../prometheus_alerts.yaml
 
 tests:
-  - interval: 5m
-    input_series:
-      - series: 'django_migrations_unapplied_total{namespace="django", job="django"}'
-        values: "1+0x4"
-    alert_rule_test:
-      - eval_time: 20m
-        alertname: DjangoMigrationsUnapplied
-        exp_alerts:
-          - exp_labels:
-              namespace: django
-              job: django
-              severity: warning
-            exp_annotations:
-              summary: "Django has unapplied migrations."
-              description: "The job django has unapplied migrations."
-              dashboard_url: "https://grafana.com/d/django-overview-jkwq/django-overview?var-namespace=django&var-job=django"
   - interval: 1m
     input_series:
-      - series: 'django_db_errors_total{namespace="django", job="django", type="IntegrityError"}'
-        values: "1+1x20"
+      - series: 'syncthing_events_total{cluster="test-cluster", job="syncthing", event="FolderCompletion", state="created"}'
+        values: "0+1x10"
     alert_rule_test:
-      - eval_time: 15m
-        alertname: DjangoDatabaseException
+      - eval_time: 6m
+        alertname: SyncthingEventsDropped
         exp_alerts:
           - exp_labels:
-              namespace: django
-              job: django
+              cluster: test-cluster
+              job: syncthing
+              event: FolderCompletion
+              severity: warning
+            exp_annotations:
+              summary: "Syncthing events dropped."
+              description: "The job syncthing has dropped events of type FolderCompletion in the last minute."
+              dashboard_url: "https://grafana.com/d/syncthing-overview-jkwq/syncthing-overview?var-job=syncthing"
+  - interval: 1m
+    input_series:
+      - series: 'syncthing_model_folder_summary{cluster="test-cluster", job="syncthing", folder="Documents", scope="need", type="bytes"}'
+        values: "1000+0x80"
+    alert_rule_test:
+      - eval_time: 65m
+        alertname: SyncthingFolderOutOfSync
+        exp_alerts:
+          - exp_labels:
+              cluster: test-cluster
+              job: syncthing
+              folder: Documents
               severity: info
-              type: IntegrityError
             exp_annotations:
-              summary: "Django database exception."
-              description: "The job django has hit the database exception IntegrityError."
-              dashboard_url: "https://grafana.com/d/django-overview-jkwq/django-overview?var-namespace=django&var-job=django"
-  - interval: 1m
-    input_series:
-      - series: 'django_http_responses_total_by_status_view_method_total{namespace="django", job="django", view="alert-test", status="200"}'
-        values: "1+10x10"
-      - series: 'django_http_responses_total_by_status_view_method_total{namespace="django", job="django", view="alert-test", status="403"}'
-        values: "1+1x10"
-    alert_rule_test:
-      - eval_time: 10m
-        alertname: DjangoHighHttp4xxErrorRate
-        exp_alerts:
-          - exp_labels:
-              namespace: django
-              job: django
-              severity: warning
-              view: alert-test
-            exp_annotations:
-              summary: "Django high HTTP 4xx error rate."
-              description: "More than 5% HTTP requests with status 4xx for django/alert-test the past 5m."
-              dashboard_url: "https://grafana.com/d/django-requests-by-view-jkwq/django-requests-by-view?var-namespace=django&var-job=django&var-view=alert-test"
-  - interval: 1m
-    input_series:
-      - series: 'django_http_responses_total_by_status_view_method_total{namespace="django", job="django", view="alert-test", status="200"}'
-        values: "1+10x10"
-      - series: 'django_http_responses_total_by_status_view_method_total{namespace="django", job="django", view="alert-test", status="503"}'
-        values: "1+1x10"
-    alert_rule_test:
-      - eval_time: 10m
-        alertname: DjangoHighHttp5xxErrorRate
-        exp_alerts:
-          - exp_labels:
-              namespace: django
-              job: django
-              severity: warning
-              view: alert-test
-            exp_annotations:
-              summary: "Django high HTTP 5xx error rate."
-              description: "More than 5% HTTP requests with status 5xx for django/alert-test the past 5m."
-              dashboard_url: "https://grafana.com/d/django-requests-by-view-jkwq/django-requests-by-view?var-namespace=django&var-job=django&var-view=alert-test"
+              summary: "Syncthing folder out of sync."
+              description: "The folder Documents in job syncthing is out of sync for more than 1h."
+              dashboard_url: "https://grafana.com/d/syncthing-overview-jkwq/syncthing-overview?var-job=syncthing&var-folder=Documents"

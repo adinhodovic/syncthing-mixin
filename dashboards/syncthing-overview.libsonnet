@@ -281,7 +281,7 @@ local grid = g.util.grid;
 
         eventsByEventPieChart:
           mixinUtils.dashboards.pieChartPanel(
-            'Events by Event [1h]',
+            'Events by Type [1h]',
             'short',
             queries.eventsByEvent,
             '{{ event }}',

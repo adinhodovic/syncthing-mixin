@@ -1,20 +1,8 @@
-# Prometheus Monitoring Mixin for Django
+# Prometheus Monitoring Mixin for Syncthing
 
-A set of Grafana dashboards and Prometheus alerts for Django using the metrics from [Django Prometheus](https://github.com/korfuri/django-prometheus).
+A set of Grafana dashboards and Prometheus alerts for Syncthing using the metrics from [Syncthing](https://docs.syncthing.net/users/metrics.html).
 
 ## Dashboards
-
-- [Django Overview](https://grafana.com/grafana/dashboards/17617-django-overview/) - Django Overview, an overview of the database, cache and requests.
-
-![django-overview](images/django-overview.png)
-
-- [Django Requests Overview](https://grafana.com/grafana/dashboards/17616-django-requests-overview/) - Django request overview, providing insights of all requests filterable by view and method. Separate graphs for app and admin views, has as well weekly breakdowns for top templates, top exceptions by type, top exceptions by view and top responses by view.
-
-![django-requests-overview](images/django-requests-overview.png)
-
-- [Django Requests by View](https://grafana.com/grafana/dashboards/17613-django-requests-by-view/) - Django requests by view, a breakdown of requests by view that shows compute expensive metrics as latency buckets alongside requests, responses and status codes.
-
-![django-requests-by-view](images/django-requests-by-view.png)
 
 Generated dashboards are also in the `./dashboards_out` directory.
 
@@ -41,8 +29,8 @@ brew install jsonnet jsonnet-bundler
 Then, grab the mixin and its dependencies:
 
 ```sh
-git clone https://github.com/adinhodovic/django-mixin
-cd django-mixin
+git clone https://github.com/adinhodovic/syncthing-mixin
+cd syncthing-mixin
 jb install
 ```
 
