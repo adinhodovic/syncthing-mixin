@@ -13,6 +13,8 @@
 
     grafanaUrl: 'https://grafana.com',
 
+    syncthingFolderOutOfSyncFor: '1h',
+
     tags: ['syncthing', 'syncthing-mixin'],
 
     dashboardIds: {

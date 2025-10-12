@@ -152,7 +152,7 @@ local query = variable.query;
     ]),
 
   dashboardLinks(config):: [
-    dashboard.link.dashboards.new('Django', config.tags) +
+    dashboard.link.dashboards.new('Syncthing', config.tags) +
     dashboard.link.link.options.withTargetBlank(true) +
     dashboard.link.link.options.withAsDropdown(true) +
     dashboard.link.link.options.withIncludeVars(true) +

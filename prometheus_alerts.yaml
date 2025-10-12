@@ -1,90 +1,36 @@
 "groups":
-- "name": "django"
+- "name": "syncthing"
   "rules":
-  - "alert": "DjangoMigrationsUnapplied"
+  - "alert": "SyncthingEventsDropped"
     "annotations":
-      "dashboard_url": "https://grafana.com/d/django-overview-jkwq/django-overview?var-namespace={{ $labels.namespace }}&var-job={{ $labels.job }}"
-      "description": "The job {{ $labels.job }} has unapplied migrations."
-      "summary": "Django has unapplied migrations."
+      "dashboard_url": "https://grafana.com/d/syncthing-overview-jkwq/syncthing-overview?var-job={{ $labels.job }}"
+      "description": "The job {{ $labels.job }} has dropped events of type {{ $labels.event }} in the last minute."
+      "summary": "Syncthing events dropped."
     "expr": |
       sum(
-        django_migrations_unapplied_total{
-          job="django"
-        }
-      ) by (cluster, namespace, job)
+        increase(
+          syncthing_events_total{
+            state="created"
+          }[5m]
+        )
+      ) by (cluster, job, event)
       > 0
-    "for": "15m"
+    "for": "1m"
     "labels":
       "severity": "warning"
-  - "alert": "DjangoDatabaseException"
+  - "alert": "SyncthingFolderOutOfSync"
     "annotations":
-      "dashboard_url": "https://grafana.com/d/django-overview-jkwq/django-overview?var-namespace={{ $labels.namespace }}&var-job={{ $labels.job }}"
-      "description": "The job {{ $labels.job }} has hit the database exception {{ $labels.type }}."
-      "summary": "Django database exception."
+      "dashboard_url": "https://grafana.com/d/syncthing-overview-jkwq/syncthing-overview?var-job={{ $labels.job }}&var-folder={{ $labels.folder }}"
+      "description": "The folder {{ $labels.folder }} in job {{ $labels.job }} is out of sync for more than 1h."
+      "summary": "Syncthing folder out of sync."
     "expr": |
-      sum (
-        increase(
-          django_db_errors_total{
-            job="django"
-          }[10m]
-        )
-      ) by (cluster, type, namespace, job)
+      sum(
+        syncthing_model_folder_summary{
+          scope="need",
+          type="bytes"
+        }
+      ) by (cluster, job, folder)
       > 0
+    "for": "1h"
     "labels":
       "severity": "info"
-  - "alert": "DjangoHighHttp4xxErrorRate"
-    "annotations":
-      "dashboard_url": "https://grafana.com/d/django-requests-by-view-jkwq/django-requests-by-view?var-namespace={{ $labels.namespace }}&var-job={{ $labels.job }}&var-view={{ $labels.view }}"
-      "description": "More than 5% HTTP requests with status 4xx for {{ $labels.job }}/{{ $labels.view }} the past 5m."
-      "summary": "Django high HTTP 4xx error rate."
-    "expr": |
-      sum(
-        rate(
-          django_http_responses_total_by_status_view_method_total{
-            job="django",
-            status=~"4.*",
-            view!~"<unnamed view>|health_check:health_check_home|prometheus-django-metrics"
-          }[5m]
-        )
-      )  by (cluster, namespace, job, view)
-      /
-      sum(
-        rate(
-          django_http_responses_total_by_status_view_method_total{
-            job="django",
-            view!~"<unnamed view>|health_check:health_check_home|prometheus-django-metrics"
-          }[5m]
-        )
-      )  by (cluster, namespace, job, view)
-      * 100 > 5
-    "for": "1m"
-    "labels":
-      "severity": "warning"
-  - "alert": "DjangoHighHttp5xxErrorRate"
-    "annotations":
-      "dashboard_url": "https://grafana.com/d/django-requests-by-view-jkwq/django-requests-by-view?var-namespace={{ $labels.namespace }}&var-job={{ $labels.job }}&var-view={{ $labels.view }}"
-      "description": "More than 5% HTTP requests with status 5xx for {{ $labels.job }}/{{ $labels.view }} the past 5m."
-      "summary": "Django high HTTP 5xx error rate."
-    "expr": |
-      sum(
-        rate(
-          django_http_responses_total_by_status_view_method_total{
-            job="django",
-            status=~"5.*",
-            view!~"<unnamed view>|health_check:health_check_home|prometheus-django-metrics"
-          }[5m]
-        )
-      )  by (cluster, namespace, job, view)
-      /
-      sum(
-        rate(
-          django_http_responses_total_by_status_view_method_total{
-            job="django",
-            view!~"<unnamed view>|health_check:health_check_home|prometheus-django-metrics"
-          }[5m]
-        )
-      )  by (cluster, namespace, job, view)
-      * 100 > 5
-    "for": "1m"
-    "labels":
-      "severity": "warning"

@@ -6,20 +6,6 @@ local dashboard = g.dashboard;
 local row = g.panel.row;
 local grid = g.util.grid;
 
-local statPanel = g.panel.stat;
-local timeSeriesPanel = g.panel.timeSeries;
-local tablePanel = g.panel.table;
-
-// Stat
-local stStandardOptions = statPanel.standardOptions;
-
-// Timeseries
-local tsStandardOptions = timeSeriesPanel.standardOptions;
-local tsOverride = tsStandardOptions.override;
-
-// Table
-local tbQueryOptions = tablePanel.queryOptions;
-
 {
   local dashboardName = 'syncthing-overview',
   grafanaDashboards+:: {

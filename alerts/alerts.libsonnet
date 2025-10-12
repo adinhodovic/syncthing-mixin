@@ -11,7 +11,6 @@
               sum(
                 increase(
                   syncthing_events_total{
-                    %(default)s,
                     state="created"
                   }[5m]
                 )
