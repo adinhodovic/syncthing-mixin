@@ -11,7 +11,7 @@
               sum(
                 increase(
                   syncthing_events_total{
-                    state="created"
+                    state="dropped"
                   }[5m]
                 )
               ) by (%(clusterLabel)s, job, event)

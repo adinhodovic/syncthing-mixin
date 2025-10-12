@@ -5,7 +5,7 @@ rule_files:
 tests:
   - interval: 1m
     input_series:
-      - series: 'syncthing_events_total{cluster="test-cluster", job="syncthing", event="FolderCompletion", state="created"}'
+      - series: 'syncthing_events_total{cluster="test-cluster", job="syncthing", event="FolderCompletion", state="dropped"}'
         values: "0+1x10"
     alert_rule_test:
       - eval_time: 6m
