@@ -16,7 +16,7 @@
             "syncthing-mixin"
          ],
          "targetBlank": true,
-         "title": "Tailscale",
+         "title": "Syncthing",
          "type": "dashboards"
       }
    ],
@@ -298,7 +298,7 @@
                "legendFormat": "{{ event }}"
             }
          ],
-         "title": "Events by Event [1h]",
+         "title": "Events by Type [1h]",
          "type": "piechart"
       },
       {

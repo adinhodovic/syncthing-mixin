@@ -13,3 +13,4 @@ exclusions:
     entries:
       - dashboard: Syncthing / Overview
         panel: Events by Type [1h]
+  target-instance-rule:

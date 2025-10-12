@@ -1,7 +1,6 @@
 local g = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
 
 local dashboard = g.dashboard;
-local annotation = g.dashboard.annotation;
 
 local variable = dashboard.variable;
 local datasource = variable.datasource;
