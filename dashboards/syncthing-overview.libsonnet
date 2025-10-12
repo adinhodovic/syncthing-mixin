@@ -671,7 +671,7 @@ local grid = g.util.grid;
       dashboard.time.withTo('now') +
       dashboard.withVariables(variables) +
       dashboard.withLinks(
-        mixinUtils.dashboards.dashboardLinks($._config)
+        mixinUtils.dashboards.dashboardLinks('Syncthing', $._config)
       ) +
       dashboard.withPanels(
         rows

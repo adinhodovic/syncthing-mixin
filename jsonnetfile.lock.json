@@ -4,6 +4,16 @@
     {
       "source": {
         "git": {
+          "remote": "https://github.com/adinhodovic/mixin-utils.git",
+          "subdir": ""
+        }
+      },
+      "version": "a5e98927734aa8730efbd816f751574c6d4175d8",
+      "sum": "3Z7EVS8/E6pL+Y1JGV9VTCCt3UTNLdyUPG746TINp+g="
+    },
+    {
+      "source": {
+        "git": {
           "remote": "https://github.com/grafana/grafonnet.git",
           "subdir": "gen/grafonnet-latest"
         }
@@ -40,14 +50,6 @@
       },
       "version": "4eee017d21cb63a303925d1dcd9fc5c496809b46",
       "sum": "Kh0GbIycNmJPzk6IOMXn1BbtLNyaiiimclYk7+mvsns="
-    },
-    {
-      "source": {
-        "local": {
-          "directory": "../mixin-utils"
-        }
-      },
-      "version": ""
     }
   ],
   "legacyImports": false

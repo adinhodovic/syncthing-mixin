@@ -129,33 +129,4 @@ local query = variable.query;
       query.refresh.onLoad() +
       query.refresh.onTime(),
   },
-
-  annotations(config, filters)::
-    local customAnnotation =
-      annotation.withName(config.annotation.name) +
-      annotation.withIconColor(config.annotation.iconColor) +
-      annotation.withEnable(true) +
-      annotation.withHide(false) +
-      annotation.datasource.withUid(config.annotation.datasource) +
-      annotation.target.withType(config.annotation.type) +
-      (
-        if config.annotation.type == 'tags' then
-          annotation.target.withMatchAny(true) +
-          if std.length(config.annotation.tags) > 0 then
-            annotation.target.withTags(config.annotation.tags)
-          else {}
-        else {}
-      );
-
-    std.prune([
-      if config.annotation.enabled then customAnnotation,
-    ]),
-
-  dashboardLinks(config):: [
-    dashboard.link.dashboards.new('Syncthing', config.tags) +
-    dashboard.link.link.options.withTargetBlank(true) +
-    dashboard.link.link.options.withAsDropdown(true) +
-    dashboard.link.link.options.withIncludeVars(true) +
-    dashboard.link.link.options.withKeepTime(true),
-  ],
 }
