@@ -944,7 +944,7 @@
                   "uid": "$datasource"
                },
                "exemplar": false,
-               "expr": "sum(\n  syncthing_model_folder_summary{\n    cluster=\"$cluster\",\njob=~\"$job\"\n,\n    scope=\"global\",\n    type=\"directories\"\n  }\n)\n",
+               "expr": "sum(\n  syncthing_model_folder_summary{\n    cluster=\"$cluster\",\njob=~\"$job\"\n,\nfolder=~\"$folder\"\n,\n    scope=\"global\",\n    type=\"directories\"\n  }\n) by (folder)\n",
                "legendFormat": "{{ folder }}"
             }
          ],
@@ -1002,7 +1002,7 @@
                   "uid": "$datasource"
                },
                "exemplar": false,
-               "expr": "sum(\n  syncthing_model_folder_summary{\n    cluster=\"$cluster\",\njob=~\"$job\"\n,\n    scope=\"global\",\n    type=\"files\"\n  }\n)\n",
+               "expr": "sum(\n  syncthing_model_folder_summary{\n    cluster=\"$cluster\",\njob=~\"$job\"\n,\nfolder=~\"$folder\"\n,\n    scope=\"global\",\n    type=\"files\"\n  }\n) by (folder)\n",
                "legendFormat": "{{ folder }}"
             }
          ],
@@ -1060,7 +1060,7 @@
                   "uid": "$datasource"
                },
                "exemplar": false,
-               "expr": "sum(\n  syncthing_model_folder_summary{\n    cluster=\"$cluster\",\njob=~\"$job\"\n,\n    scope=\"global\",\n    type=\"deleted\"\n  }\n)\n",
+               "expr": "sum(\n  syncthing_model_folder_summary{\n    cluster=\"$cluster\",\njob=~\"$job\"\n,\nfolder=~\"$folder\"\n,\n    scope=\"global\",\n    type=\"deleted\"\n  }\n) by (folder)\n",
                "legendFormat": "{{ folder }}"
             }
          ],
