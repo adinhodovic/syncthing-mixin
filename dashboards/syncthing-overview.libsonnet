@@ -137,9 +137,9 @@ local grid = g.util.grid;
             }
           ) by (folder)
         ||| % defaultFilters,
-        folderDirectoriesByFolderTotal: std.strReplace(queries.folderBytesTotal, 'bytes', 'directories'),
-        folderFilesByFolderTotal: std.strReplace(queries.folderBytesTotal, 'bytes', 'files'),
-        folderDeletedByFolderTotal: std.strReplace(queries.folderBytesTotal, 'bytes', 'deleted'),
+        folderDirectoriesByFolderTotal: std.strReplace(queries.folderBytesByFolderTotal, 'bytes', 'directories'),
+        folderFilesByFolderTotal: std.strReplace(queries.folderBytesByFolderTotal, 'bytes', 'files'),
+        folderDeletedByFolderTotal: std.strReplace(queries.folderBytesByFolderTotal, 'bytes', 'deleted'),
 
         folderPullsRate: |||
           sum(

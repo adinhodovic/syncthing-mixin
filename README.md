@@ -4,6 +4,8 @@ A set of Grafana dashboards and Prometheus alerts for Syncthing using the metric
 
 ## Dashboards
 
+![Grafana Dashboard](./images/syncthing-overview-1.png)
+
 Generated dashboards are also in the `./dashboards_out` directory.
 
 ## How to use
