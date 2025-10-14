@@ -252,7 +252,7 @@ local grid = g.util.grid;
             'Folders',
             'short',
             queries.folderCount,
-            'The total number of folders being synchronized by Syncthing.',
+            description='The total number of folders being synchronized by Syncthing.',
           ),
 
         deviceCountStat:
@@ -260,7 +260,7 @@ local grid = g.util.grid;
             'Devices',
             'short',
             queries.deviceCount,
-            'The total number of devices connected to Syncthing.',
+            description='The total number of devices connected to Syncthing.',
           ),
 
         eventsRateStat:
@@ -268,7 +268,7 @@ local grid = g.util.grid;
             'Events',
             'short',
             queries.eventsRate,
-            'The rate of events occurring in Syncthing, measured in events per second.',
+            description='The rate of events occurring in Syncthing, measured in events per second.',
           ),
 
         operationsRateStat:
@@ -276,7 +276,7 @@ local grid = g.util.grid;
             'Filesystem Operations',
             'short',
             queries.operationsRate,
-            'The rate of filesystem operations performed by Syncthing, measured in operations per second.',
+            description='The rate of filesystem operations performed by Syncthing, measured in operations per second.',
           ),
 
         eventsByEventPieChart:
@@ -285,7 +285,7 @@ local grid = g.util.grid;
             'short',
             queries.eventsByEvent,
             '{{ event }}',
-            'The distribution of events in Syncthing, categorized by event type over the last hour.',
+            description='The distribution of events in Syncthing, categorized by event type over the last hour.',
           ),
 
         folderByStatePieChart:
