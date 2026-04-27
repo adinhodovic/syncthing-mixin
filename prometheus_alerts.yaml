@@ -10,6 +10,7 @@
       sum(
         increase(
           syncthing_events_total{
+            job="syncthing",
             state="dropped"
           }[5m]
         )
@@ -26,6 +27,7 @@
     "expr": |
       sum(
         syncthing_model_folder_summary{
+          job="syncthing",
           scope="need",
           type="bytes"
         }
