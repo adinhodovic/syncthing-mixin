@@ -51,6 +51,7 @@ local query = variable.query;
         'datasource',
         'prometheus',
       ) +
+      datasource.withRegex(config.datasourceFilterRegex) +
       datasource.generalOptions.withLabel('Data source') +
       {
         current: {
@@ -63,7 +64,7 @@ local query = variable.query;
     cluster:
       query.new(
         config.clusterLabel,
-        'label_values(syncthing_events_total{}, cluster)',
+        'label_values(syncthing_events_total{}, %(clusterLabel)s)' % config,
       ) +
       query.withDatasourceFromVariable(this.datasource) +
       query.withSort() +

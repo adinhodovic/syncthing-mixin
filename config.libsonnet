@@ -6,14 +6,13 @@
 
     // Default datasource name
     datasourceName: 'default',
+    datasourceFilterRegex: '',
 
     // Opt-in to multiCluster dashboards by overriding this and the clusterLabel.
     showMultiCluster: false,
     clusterLabel: 'cluster',
 
     grafanaUrl: 'https://grafana.com',
-
-    syncthingFolderOutOfSyncFor: '1h',
 
     tags: ['syncthing', 'syncthing-mixin'],
 
@@ -22,6 +21,23 @@
     },
     dashboardUrls: {
       'syncthing-overview': '%s/d/%s/syncthing-overview' % [this.grafanaUrl, this.dashboardIds['syncthing-overview']],
+    },
+
+    // Syncthing alert configuration
+    alerts: {
+      enabled: true,
+
+      eventsDropped: {
+        enabled: true,
+        severity: 'warning',
+        interval: '1m',
+      },
+
+      folderOutOfSync: {
+        enabled: true,
+        severity: 'info',
+        interval: '1h',
+      },
     },
 
     // Custom annotations to display in graphs

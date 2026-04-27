@@ -302,7 +302,7 @@ local grid = g.util.grid;
                 legend: 'Unsynced',
               },
             ],
-            'The distribution of folders being synchronized by Syncthing, categorized by state type.',
+            description='The distribution of folders being synchronized by Syncthing, categorized by state type.',
           ),
 
         folderBytesTotalTimeSeries:
@@ -670,9 +670,6 @@ local grid = g.util.grid;
       dashboard.time.withFrom('now-6h') +
       dashboard.time.withTo('now') +
       dashboard.withVariables(variables) +
-      dashboard.withLinks(
-        mixinUtils.dashboards.dashboardLinks('Syncthing', $._config)
-      ) +
       dashboard.withPanels(
         rows
       ) +
